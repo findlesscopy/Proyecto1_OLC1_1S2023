@@ -1,0 +1,5 @@
+cd C:\Users\findl\OneDrive\Escritorio\COMPI 1\Laboratorio\Proyecto1\src\Analizadores
+Lexer
+java -jar C:\JflexCup\jflex-1.9.0\lib\jflex-full-1.9.0.jar Lex.jflex
+Parser
+java -jar C:\JflexCup\java-cup-11b.jar Parser.cup
