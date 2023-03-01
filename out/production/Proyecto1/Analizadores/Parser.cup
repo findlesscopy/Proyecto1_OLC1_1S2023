@@ -15,44 +15,72 @@ parser code
     }
 
 :}
+// COMENTARIOS Y ESPACIOS IGNORADOS
 
+//PALABRAS RESERVADAS
+terminal String RES_CONJUNTO;
 
-terminal String PTCOMA,PAR_IZQ,PAR_DER,COR_IZQ,COR_DER; // mismo nombre en el archivo lexico
-terminal String MAS,MENOS,POR,DIV;
-terminal String ENTERO;
-terminal String DECIMAL;
-terminal String UMENOS;                             // para la precedencia para los negativos y no en
-terminal String REVALUAR;
+//SIMBOLOS
+terminal String CB_LEFT, CB_RIGHT, COLON, VIRGULILLA, SEMICOLON, PORCENTAJE, COMMA, ARROW;
 
-non terminal ini;                                   // terminales para las transiciones
+//OPERADORES
+terminal String OR, AND, MAS, ASTERISCO, QUESTION;
+
+//ER
+terminal String CADENAS, ID, L_MAYUS, L_MINUS, DIGITS, ASCII;
+
+//terminales para transisiones
+non terminal olc;
+non terminal inicio;
 non terminal instrucciones;
 non terminal instruccion;
-non terminal Double expresion;                      // el Double es el tipo que retorna la expresion
+non terminal conjuntos;
+non terminal contenido;
+non terminal conjuntos_er;
+non terminal expresion;
+non terminal pruebas;
+non terminal prueba;
 
-precedence left MAS,MENOS;                          // precedencia de operadores
-precedence left POR,DIV;
-precedence right UMENOS;
 
-start with ini;                                     // iniciar la gramataica
+start with olc;                                     // iniciar la gramatica
 
-ini::=instrucciones;                                // produccion inicial
+olc::=inicio;                                // produccion inicial
 
-instrucciones ::= instruccion instrucciones
- | instruccion
-;
+inicio::= instrucciones
+         ;
 
-instruccion ::=
-   REVALUAR COR_IZQ expresion:a COR_DER PTCOMA{:System.out.println("El valor de la expresión es: "+a);:}
-   | error PTCOMA
-;
+instrucciones::= instruccion instrucciones
+               |instruccion
+               ;
 
-expresion  ::=
-    MENOS expresion:a                      {:RESULT=a*-1;:}%prec UMENOS
- |  expresion:a MAS        expresion:b     {:RESULT=a+b;:}
- |  expresion:a MENOS      expresion:b     {:RESULT=a-b;:}
- |  expresion:a POR        expresion:b     {:RESULT=a*b;:}
- |  expresion:a DIV   expresion:b     {:RESULT=a/b;:}
- |  ENTERO:a                               {:RESULT=new Double(a);:}
- |  DECIMAL:a                              {:RESULT=new Double(a);:}
- |  PAR_IZQ expresion:a PAR_DER              {:RESULT=a;:}
-;
+instruccion::= CB_LEFT contenido CB_RIGHT        // produccion de instrucciones
+          ;
+
+contenido::= RES_CONJUNTO COLON ID ARROW conjuntos SEMICOLON contenido
+              |ID ARROW expresion SEMICOLON contenido
+              |PORCENTAJE PORCENTAJE PORCENTAJE PORCENTAJE pruebas contenido
+              |error
+              ;
+
+conjuntos::= L_MINUS VIRGULILLA L_MINUS
+            |L_MAYUS VIRGULILLA L_MAYUS
+            |DIGITS VIRGULILLA DIGITS
+            |ASCII VIRGULILLA ASCII
+            ;
+
+expresion::= conjuntos_er
+            |expresion expresion OR | expresion expresion AND
+            |expresion MAS | expresion ASTERISCO
+            |expresion QUESTION
+            ;
+
+conjuntos_er::= CB_LEFT ID CB_RIGHT conjuntos_er
+                |CADENAS conjuntos_er
+               ;
+
+pruebas::= prueba SEMICOLON pruebas
+          |prueba
+          ;
+
+prueba::= ID COLON CADENAS
+        ;

@@ -8,37 +8,51 @@ package Analizadores;
 /** CUP generated class containing symbol constants. */
 public class sym {
   /* terminals */
-  public static final int DECIMAL = 12;
-  public static final int MENOS = 8;
-  public static final int UMENOS = 13;
-  public static final int PAR_IZQ = 3;
-  public static final int ENTERO = 11;
-  public static final int POR = 9;
-  public static final int PTCOMA = 2;
+  public static final int AND = 12;
+  public static final int SEMICOLON = 7;
+  public static final int QUESTION = 15;
+  public static final int OR = 11;
+  public static final int CB_LEFT = 3;
+  public static final int CB_RIGHT = 4;
+  public static final int COLON = 5;
+  public static final int ID = 17;
+  public static final int PORCENTAJE = 8;
+  public static final int DIGITS = 20;
+  public static final int COMMA = 9;
   public static final int EOF = 0;
-  public static final int PAR_DER = 4;
-  public static final int MAS = 7;
-  public static final int COR_IZQ = 5;
-  public static final int DIV = 10;
+  public static final int ASTERISCO = 14;
+  public static final int RES_CONJUNTO = 2;
+  public static final int CADENAS = 16;
   public static final int error = 1;
-  public static final int COR_DER = 6;
-  public static final int REVALUAR = 14;
+  public static final int ARROW = 10;
+  public static final int L_MAYUS = 18;
+  public static final int VIRGULILLA = 6;
+  public static final int ASCII = 21;
+  public static final int L_MINUS = 19;
+  public static final int MAS = 13;
   public static final String[] terminalNames = new String[] {
   "EOF",
   "error",
-  "PTCOMA",
-  "PAR_IZQ",
-  "PAR_DER",
-  "COR_IZQ",
-  "COR_DER",
+  "RES_CONJUNTO",
+  "CB_LEFT",
+  "CB_RIGHT",
+  "COLON",
+  "VIRGULILLA",
+  "SEMICOLON",
+  "PORCENTAJE",
+  "COMMA",
+  "ARROW",
+  "OR",
+  "AND",
   "MAS",
-  "MENOS",
-  "POR",
-  "DIV",
-  "ENTERO",
-  "DECIMAL",
-  "UMENOS",
-  "REVALUAR"
+  "ASTERISCO",
+  "QUESTION",
+  "CADENAS",
+  "ID",
+  "L_MAYUS",
+  "L_MINUS",
+  "DIGITS",
+  "ASCII"
   };
 }
 
