@@ -3,17 +3,28 @@ import Analizadores.Lexer;
 import Analizadores.parser;
 import java.io.File;
 import java.util.Scanner;
+import Arbol.Arbol;
 public class Proyecto1 {
     public static void main(String[] args) throws Exception{
-        StringBuilder data = new StringBuilder();
-        File doc = new File("src/Analizadores/archivo.olc");
-        Scanner obj = new Scanner(doc);
-        while(obj.hasNextLine()) {
-            data.append(obj.nextLine());
+        /*File doc = new File("src/Analizadores/archivo.olc");
+        Scanner sc = new Scanner(doc);
+        String data = "";
+        while (sc.hasNextLine()) {
+            data += sc.nextLine() + "\n";
 
         }
-        interpretar(data.toString());
+        interpretar(data);*/
         //interpretar("{\n//Comentario de una linea \n CONJ: letra -> a~z;\n //expresiones regulares ExpReg1 -> .{letra}*|\"_\"{letra}; \n %% %% ExpReg1 : \"primerlexema\"; \n }");
+        Arbol arbol = new Arbol();
+        arbol.insertar("hola");
+        arbol.insertar("mundo");
+        arbol.insertar("como");
+        arbol.insertar("estas");
+        arbol.insertar("hola");
+        arbol.insertar("mundo");
+        arbol.insertar("como");
+        arbol.insertar("estas");
+        arbol.Graficar();
     }
 
     private static void interpretar(String entrada) {

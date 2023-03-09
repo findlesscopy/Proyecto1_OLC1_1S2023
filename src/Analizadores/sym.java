@@ -8,51 +8,57 @@ package Analizadores;
 /** CUP generated class containing symbol constants. */
 public class sym {
   /* terminals */
-  public static final int AND = 12;
-  public static final int SEMICOLON = 7;
-  public static final int QUESTION = 15;
-  public static final int OR = 11;
-  public static final int CB_LEFT = 3;
-  public static final int CB_RIGHT = 4;
-  public static final int COLON = 5;
-  public static final int ID = 17;
-  public static final int PORCENTAJE = 8;
-  public static final int DIGITS = 20;
-  public static final int COMMA = 9;
+  public static final int LL_ABRE = 3;
+  public static final int GUION = 8;
+  public static final int CADENA = 24;
+  public static final int OR = 13;
+  public static final int D_PUNTOS = 5;
+  public static final int L_MINUSCULA = 18;
+  public static final int POSITIVA = 15;
+  public static final int CONCAT = 14;
+  public static final int ID = 22;
+  public static final int COMILLAS = 12;
+  public static final int PORCENTAJE = 11;
+  public static final int KLEENE = 16;
+  public static final int CARACTER = 23;
+  public static final int COMA = 7;
+  public static final int L_MAYUSCULA = 19;
+  public static final int MAYOR = 9;
   public static final int EOF = 0;
-  public static final int ASTERISCO = 14;
-  public static final int RES_CONJUNTO = 2;
-  public static final int CADENAS = 16;
+  public static final int DIGITO = 20;
+  public static final int LL_CIERRA = 4;
+  public static final int CONJ = 2;
+  public static final int ESPECIAL = 21;
   public static final int error = 1;
-  public static final int ARROW = 10;
-  public static final int L_MAYUS = 18;
-  public static final int VIRGULILLA = 6;
-  public static final int ASCII = 21;
-  public static final int L_MINUS = 19;
-  public static final int MAS = 13;
+  public static final int OPCIONAL = 17;
+  public static final int P_COMA = 6;
+  public static final int VIRGULILLA = 10;
   public static final String[] terminalNames = new String[] {
   "EOF",
   "error",
-  "RES_CONJUNTO",
-  "CB_LEFT",
-  "CB_RIGHT",
-  "COLON",
+  "CONJ",
+  "LL_ABRE",
+  "LL_CIERRA",
+  "D_PUNTOS",
+  "P_COMA",
+  "COMA",
+  "GUION",
+  "MAYOR",
   "VIRGULILLA",
-  "SEMICOLON",
   "PORCENTAJE",
-  "COMMA",
-  "ARROW",
+  "COMILLAS",
   "OR",
-  "AND",
-  "MAS",
-  "ASTERISCO",
-  "QUESTION",
-  "CADENAS",
+  "CONCAT",
+  "POSITIVA",
+  "KLEENE",
+  "OPCIONAL",
+  "L_MINUSCULA",
+  "L_MAYUSCULA",
+  "DIGITO",
+  "ESPECIAL",
   "ID",
-  "L_MAYUS",
-  "L_MINUS",
-  "DIGITS",
-  "ASCII"
+  "CARACTER",
+  "CADENA"
   };
 }
 

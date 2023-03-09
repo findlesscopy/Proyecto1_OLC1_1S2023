@@ -18,69 +18,49 @@ parser code
 // COMENTARIOS Y ESPACIOS IGNORADOS
 
 //PALABRAS RESERVADAS
-terminal String RES_CONJUNTO;
 
-//SIMBOLOS
-terminal String CB_LEFT, CB_RIGHT, COLON, VIRGULILLA, SEMICOLON, PORCENTAJE, COMMA, ARROW;
+terminal CONJ, LL_ABRE, LL_CIERRA, D_PUNTOS, P_COMA, COMA, GUION, MAYOR, VIRGULILLA, PORCENTAJE;
+terminal OR, CONCAT, POSITIVA, KLEENE, OPCIONAL;
+terminal L_MINUSCULA, L_MAYUSCULA, DIGITO, ESPECIAL, ID, CARACTER, CADENA;
 
-//OPERADORES
-terminal String OR, AND, MAS, ASTERISCO, QUESTION;
-
-//ER
-terminal String CADENAS, ID, L_MAYUS, L_MINUS, DIGITS, ASCII;
-
-//terminales para transisiones
 non terminal olc;
 non terminal inicio;
-non terminal instrucciones;
-non terminal instruccion;
-non terminal conjuntos;
-non terminal contenido;
-non terminal conjuntos_er;
-non terminal expresion;
-non terminal pruebas;
-non terminal prueba;
+non terminal definiciones, definicion, rango, expresion_regular, listado, unico;
+non terminal pruebas, prueba;
 
+start with olc;
 
-start with olc;                                     // iniciar la gramatica
+olc::= LL_ABRE definiciones PORCENTAJE PORCENTAJE PORCENTAJE PORCENTAJE pruebas LL_CIERRA;
 
-olc::=inicio;                                // produccion inicial
+definiciones::= definiciones definicion
+               | definicion;
 
-inicio::= instrucciones
-         ;
+definicion::= CONJ D_PUNTOS ID GUION MAYOR rango P_COMA
+             |ID GUION MAYOR expresion_regular P_COMA;
 
-instrucciones::= instruccion instrucciones
-               |instruccion
-               ;
+rango::= L_MINUSCULA VIRGULILLA L_MINUSCULA
+        | L_MAYUSCULA VIRGULILLA L_MAYUSCULA
+        | DIGITO VIRGULILLA DIGITO
+        | ESPECIAL VIRGULILLA ESPECIAL
+        | listado;
 
-instruccion::= CB_LEFT contenido CB_RIGHT        // produccion de instrucciones
-          ;
+listado::= listado COMA unico
+          | unico;
 
-contenido::= RES_CONJUNTO COLON ID ARROW conjuntos SEMICOLON contenido
-              |ID ARROW expresion SEMICOLON contenido
-              |PORCENTAJE PORCENTAJE PORCENTAJE PORCENTAJE pruebas contenido
-              |error
-              ;
+unico::= L_MINUSCULA
+        | L_MAYUSCULA
+        | DIGITO
+        | ESPECIAL;
 
-conjuntos::= L_MINUS VIRGULILLA L_MINUS
-            |L_MAYUS VIRGULILLA L_MAYUS
-            |DIGITS VIRGULILLA DIGITS
-            |ASCII VIRGULILLA ASCII
-            ;
+expresion_regular::= CONCAT expresion_regular expresion_regular
+                    | OR expresion_regular expresion_regular
+                    | POSITIVA expresion_regular
+                    | KLEENE expresion_regular
+                    | OPCIONAL expresion_regular
+                    | CARACTER
+                    | LL_ABRE ID LL_CIERRA;
 
-expresion::= conjuntos_er
-            |expresion expresion OR | expresion expresion AND
-            |expresion MAS | expresion ASTERISCO
-            |expresion QUESTION
-            ;
+pruebas ::= pruebas prueba
+           | prueba;
 
-conjuntos_er::= CB_LEFT ID CB_RIGHT conjuntos_er
-                |CADENAS conjuntos_er
-               ;
-
-pruebas::= prueba SEMICOLON pruebas
-          |prueba
-          ;
-
-prueba::= ID COLON CADENAS
-        ;
+prueba::= ID D_PUNTOS CADENA P_COMA;

@@ -827,7 +827,7 @@ public class Lexer implements java_cup.runtime.Scanner {
           // fall through
           case 45: break;
           case 21:
-            { System.out.println("Comentario Linea" + yytext() );/* Ignorar */
+            { System.out.println("Comentario Linea" + yylex(); );/* Ignorar */
             }
           // fall through
           case 46: break;
