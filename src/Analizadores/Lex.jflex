@@ -79,3 +79,4 @@ CADENA = \" ([^\"] | "\\\"")+  \"
 <YYINITIAL> {CADENA}  { System.out.println("CADENA"); return new Symbol(sym.CADENA); }
 <YYINITIAL> {DIGITO}  { System.out.println("DIGITO"); return new Symbol(sym.DIGITO); }
 <YYINITIAL> {ESPECIAL}  { System.out.println("ESPECIAL"); return new Symbol(sym.ESPECIAL); }
+

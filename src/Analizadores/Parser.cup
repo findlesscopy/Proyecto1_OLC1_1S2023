@@ -1,10 +1,13 @@
 package Analizadores;
 import java_cup.runtime.*;
-
+import java.util.ArrayList;
+import Arbol.Nodo;
+import Arbol.Arbol;
 
 //PARSER
 parser code
 {://Codigo visible
+    public ArrayList<Arbol> listadoExpresiones = new ArrayList<>();
 
     public void syntax_error(Symbol s){
         System.out.println("Error R de sintaxis: "+ s.value +" Linea "+(s.left+1)+" columna "+(s.right+1) );
@@ -36,7 +39,7 @@ definiciones::= definiciones definicion
                | definicion;
 
 definicion::= CONJ D_PUNTOS ID GUION MAYOR rango P_COMA
-             |ID GUION MAYOR expresion_regular P_COMA;
+             |ID GUION MAYOR expresion_regular:a P_COMA {: listadoExpresiones.add(new Arbol((Nodo)a)); :};
 
 rango::= L_MINUSCULA VIRGULILLA L_MINUSCULA
         | L_MAYUSCULA VIRGULILLA L_MAYUSCULA
@@ -52,13 +55,13 @@ unico::= L_MINUSCULA
         | DIGITO
         | ESPECIAL;
 
-expresion_regular::= CONCAT expresion_regular expresion_regular
-                    | OR expresion_regular expresion_regular
-                    | POSITIVA expresion_regular
-                    | KLEENE expresion_regular
-                    | OPCIONAL expresion_regular
-                    | CARACTER
-                    | LL_ABRE ID LL_CIERRA;
+expresion_regular::= CONCAT:a expresion_regular:b expresion_regular:c {: Nodo padre = new Nodo((String)a); padre.setIzquierda((Nodo)b); padre.setDerecha((Nodo)c); RESULT = padre; :}
+                    | OR:a expresion_regular:b expresion_regular:c {: Nodo padre = new Nodo((String)a); padre.setIzquierda((Nodo)b); padre.setDerecha((Nodo)c); RESULT = padre; :}
+                    | POSITIVA:a expresion_regular:b {: Nodo padre = new Nodo((String)a); padre.setIzquierda((Nodo)b); RESULT = padre; :}
+                    | KLEENE:a expresion_regular:b {: Nodo padre = new Nodo((String)a); padre.setIzquierda((Nodo)b); RESULT = padre; :}
+                    | OPCIONAL:a expresion_regular:b {: Nodo padre = new Nodo((String)a); padre.setIzquierda((Nodo)b); RESULT = padre; :}
+                    | CARACTER:a {: Nodo leave = new Nodo((String)a); leave.setHoja(true) ;RESULT = leave; :}
+                    | LL_ABRE ID:a LL_CIERRA {: Nodo leave = new Nodo((String)a); leave.setHoja(true); RESULT = leave; :};
 
 pruebas ::= pruebas prueba
            | prueba;
