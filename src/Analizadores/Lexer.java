@@ -95,14 +95,14 @@ public class Lexer implements java_cup.runtime.Scanner {
   private static final int [] ZZ_ACTION = zzUnpackAction();
 
   private static final String ZZ_ACTION_PACKED_0 =
-    "\1\0\1\1\2\2\1\3\1\4\1\5\1\6\1\7"+
-    "\1\10\1\2\1\11\1\12\1\13\1\2\1\14\1\15"+
-    "\2\16\1\2\1\17\1\20\1\21\1\22\1\23\1\24"+
-    "\3\0\1\25\1\0\1\17\1\26\1\0\1\27\1\26"+
-    "\2\0\1\17\1\27\1\0\1\30\1\31";
+    "\1\0\1\1\2\2\1\3\1\4\1\5\1\6\1\2"+
+    "\1\7\1\2\1\10\1\11\1\12\1\2\1\13\2\14"+
+    "\2\2\1\15\1\16\1\17\1\20\1\21\4\0\1\22"+
+    "\1\1\1\0\2\23\1\24\1\0\1\25\1\24\2\0"+
+    "\1\23\1\25\1\0\1\26\1\1";
 
   private static int [] zzUnpackAction() {
-    int [] result = new int[43];
+    int [] result = new int[45];
     int offset = 0;
     offset = zzUnpackAction(ZZ_ACTION_PACKED_0, offset, result);
     return result;
@@ -128,14 +128,14 @@ public class Lexer implements java_cup.runtime.Scanner {
 
   private static final String ZZ_ROWMAP_PACKED_0 =
     "\0\0\0\42\0\104\0\146\0\104\0\104\0\104\0\104"+
-    "\0\104\0\104\0\210\0\104\0\104\0\104\0\252\0\104"+
-    "\0\104\0\314\0\356\0\u0110\0\314\0\314\0\104\0\104"+
-    "\0\104\0\104\0\u0132\0\u0154\0\u0176\0\u0198\0\u01ba\0\u01dc"+
-    "\0\104\0\u01fe\0\104\0\u0154\0\u0220\0\u0242\0\u0264\0\u0154"+
-    "\0\u0286\0\314\0\104";
+    "\0\210\0\104\0\252\0\104\0\104\0\104\0\314\0\104"+
+    "\0\356\0\u0110\0\u0132\0\356\0\356\0\104\0\104\0\104"+
+    "\0\104\0\u0154\0\u0176\0\u0198\0\210\0\104\0\u01ba\0\u01dc"+
+    "\0\356\0\u01fe\0\104\0\u0220\0\104\0\u0176\0\u0242\0\u0264"+
+    "\0\u0286\0\u0176\0\u02a8\0\356\0\104";
 
   private static int [] zzUnpackRowMap() {
-    int [] result = new int[43];
+    int [] result = new int[45];
     int offset = 0;
     offset = zzUnpackRowMap(ZZ_ROWMAP_PACKED_0, offset, result);
     return result;
@@ -160,22 +160,22 @@ public class Lexer implements java_cup.runtime.Scanner {
   private static final String ZZ_TRANS_PACKED_0 =
     "\1\0\2\2\1\0\1\3\1\4\1\3\1\5\1\3"+
     "\1\6\1\7\1\10\1\11\1\12\1\13\1\14\1\15"+
-    "\1\16\1\17\1\20\1\21\1\22\1\23\3\22\1\24"+
-    "\1\25\2\26\1\27\1\30\1\31\1\32\1\0\2\2"+
-    "\101\0\5\33\1\0\2\33\1\34\21\33\1\35\7\33"+
-    "\16\0\1\36\27\0\1\37\54\0\1\25\5\0\5\25"+
-    "\1\0\3\25\23\0\1\25\5\0\4\25\1\40\1\0"+
-    "\3\25\11\0\1\41\2\0\1\41\24\0\1\41\4\0"+
-    "\5\34\1\41\24\34\1\42\14\34\1\43\24\34\1\42"+
-    "\14\34\1\44\24\34\1\42\7\34\2\36\2\0\36\36"+
-    "\4\45\1\46\35\45\17\0\1\25\5\0\3\25\1\47"+
-    "\1\25\1\0\3\25\4\0\5\34\1\50\24\34\1\42"+
-    "\7\34\4\45\1\51\60\45\1\0\16\45\17\0\1\25"+
-    "\5\0\2\25\1\52\2\25\1\0\3\25\4\0\23\45"+
-    "\1\53\16\45";
+    "\1\16\1\17\1\3\1\20\1\21\1\22\3\21\1\23"+
+    "\1\24\2\25\1\26\1\27\1\30\1\31\1\0\2\2"+
+    "\101\0\5\32\1\0\2\32\1\33\21\32\1\34\7\32"+
+    "\1\0\2\35\20\0\1\36\34\0\1\37\27\0\1\40"+
+    "\54\0\1\41\5\0\5\41\1\0\3\41\23\0\1\41"+
+    "\5\0\4\41\1\42\1\0\3\41\11\0\1\43\2\0"+
+    "\1\43\24\0\1\43\4\0\5\33\1\43\24\33\1\44"+
+    "\14\33\1\45\24\33\1\44\14\33\1\46\24\33\1\44"+
+    "\7\33\2\37\2\0\36\37\4\47\1\50\35\47\17\0"+
+    "\1\41\5\0\3\41\1\51\1\41\1\0\3\41\4\0"+
+    "\5\33\1\52\24\33\1\44\7\33\4\47\1\53\60\47"+
+    "\1\0\16\47\17\0\1\41\5\0\2\41\1\54\2\41"+
+    "\1\0\3\41\4\0\23\47\1\55\16\47";
 
   private static int [] zzUnpacktrans() {
-    int [] result = new int[680];
+    int [] result = new int[714];
     int offset = 0;
     offset = zzUnpacktrans(ZZ_TRANS_PACKED_0, offset, result);
     return result;
@@ -218,12 +218,13 @@ public class Lexer implements java_cup.runtime.Scanner {
   private static final int [] ZZ_ATTRIBUTE = zzUnpackAttribute();
 
   private static final String ZZ_ATTRIBUTE_PACKED_0 =
-    "\1\0\1\1\1\11\1\1\6\11\1\1\3\11\1\1"+
-    "\2\11\5\1\4\11\3\0\1\1\1\0\1\1\1\11"+
-    "\1\0\1\11\1\1\2\0\2\1\1\0\1\1\1\11";
+    "\1\0\1\1\1\11\1\1\4\11\1\1\1\11\1\1"+
+    "\3\11\1\1\1\11\5\1\4\11\4\0\1\11\1\1"+
+    "\1\0\2\1\1\11\1\0\1\11\1\1\2\0\2\1"+
+    "\1\0\1\1\1\11";
 
   private static int [] zzUnpackAttribute() {
-    int [] result = new int[43];
+    int [] result = new int[45];
     int offset = 0;
     offset = zzUnpackAttribute(ZZ_ATTRIBUTE_PACKED_0, offset, result);
     return result;
@@ -730,127 +731,112 @@ public class Lexer implements java_cup.runtime.Scanner {
             { /* Ignorar */
             }
           // fall through
-          case 26: break;
+          case 23: break;
           case 2:
-            { System.out.println("ESPECIAL"); return new Symbol(sym.ESPECIAL);
+            { return new Symbol(sym.ESPECIAL, yyline, yycolumn, yytext());
+            }
+          // fall through
+          case 24: break;
+          case 3:
+            { return new Symbol(sym.PORCENTAJE, yyline, yycolumn, yytext());
+            }
+          // fall through
+          case 25: break;
+          case 4:
+            { return new Symbol(sym.KLEENE, yyline, yycolumn, yytext());
+            }
+          // fall through
+          case 26: break;
+          case 5:
+            { return new Symbol(sym.POSITIVA, yyline, yycolumn, yytext());
             }
           // fall through
           case 27: break;
-          case 3:
-            { System.out.println("PORCENTAJE"); return new Symbol(sym.PORCENTAJE);
+          case 6:
+            { return new Symbol(sym.COMA, yyline, yycolumn, yytext());
             }
           // fall through
           case 28: break;
-          case 4:
-            { System.out.println("KLEENE"); return new Symbol(sym.KLEENE);
+          case 7:
+            { return new Symbol(sym.CONCAT, yyline, yycolumn, yytext());
             }
           // fall through
           case 29: break;
-          case 5:
-            { System.out.println("POSITIVA"); return new Symbol(sym.POSITIVA);
+          case 8:
+            { return new Symbol(sym.DIGITO , yyline, yycolumn, yytext());
             }
           // fall through
           case 30: break;
-          case 6:
-            { System.out.println("COMA"); return new Symbol(sym.COMA);
+          case 9:
+            { return new Symbol(sym.D_PUNTOS, yyline, yycolumn, yytext());
             }
           // fall through
           case 31: break;
-          case 7:
-            { System.out.println("GUION"); return new Symbol(sym.GUION);
+          case 10:
+            { return new Symbol(sym.P_COMA, yyline, yycolumn, yytext());
             }
           // fall through
           case 32: break;
-          case 8:
-            { System.out.println("CONCAT"); return new Symbol(sym.CONCAT);
+          case 11:
+            { return new Symbol(sym.OPCIONAL, yyline, yycolumn, yytext());
             }
           // fall through
           case 33: break;
-          case 9:
-            { System.out.println("DIGITO"); return new Symbol(sym.DIGITO);
+          case 12:
+            { return new Symbol(sym.L_MAYUSCULA, yyline, yycolumn, yytext());
             }
           // fall through
           case 34: break;
-          case 10:
-            { System.out.println("DOS PUNTOS"); return new Symbol(sym.D_PUNTOS);
+          case 13:
+            { return new Symbol(sym.L_MINUSCULA, yyline, yycolumn, yytext());
             }
           // fall through
           case 35: break;
-          case 11:
-            { System.out.println("PUNTO Y COMA"); return new Symbol(sym.P_COMA);
+          case 14:
+            { return new Symbol(sym.LL_ABRE, yyline, yycolumn, yytext());
             }
           // fall through
           case 36: break;
-          case 12:
-            { System.out.println("MAYOR"); return new Symbol(sym.MAYOR);
+          case 15:
+            { return new Symbol(sym.OR, yyline, yycolumn, yytext());
             }
           // fall through
           case 37: break;
-          case 13:
-            { System.out.println("OPCIONAL"); return new Symbol(sym.OPCIONAL);
+          case 16:
+            { return new Symbol(sym.LL_CIERRA, yyline, yycolumn, yytext());
             }
           // fall through
           case 38: break;
-          case 14:
-            { System.out.println("L_MAYUSCULA"); return new Symbol(sym.L_MAYUSCULA);
+          case 17:
+            { return new Symbol(sym.VIRGULILLA, yyline, yycolumn, yytext());
             }
           // fall through
           case 39: break;
-          case 15:
-            { System.out.println("ID"); return new Symbol(sym.ID);
+          case 18:
+            { return new Symbol(sym.FLECHA, yyline, yycolumn, yytext());
             }
           // fall through
           case 40: break;
-          case 16:
-            { System.out.println("L_MINUSCULA"); return new Symbol(sym.L_MINUSCULA);
+          case 19:
+            { return new Symbol(sym.ID, yyline, yycolumn, yytext());
             }
           // fall through
           case 41: break;
-          case 17:
-            { System.out.println("LLAVE ABRE"); return new Symbol(sym.LL_ABRE);
+          case 20:
+            { return new Symbol(sym.CARACTER, yyline, yycolumn, yytext());
             }
           // fall through
           case 42: break;
-          case 18:
-            { System.out.println("OR"); return new Symbol(sym.OR);
+          case 21:
+            { return new Symbol(sym.CADENA, yyline, yycolumn, yytext());
             }
           // fall through
           case 43: break;
-          case 19:
-            { System.out.println("LLAVE CIERRA"); return new Symbol(sym.LL_CIERRA);
+          case 22:
+            { return new Symbol(sym.CONJ, yyline, yycolumn, yytext());
             }
           // fall through
           case 44: break;
-          case 20:
-            { System.out.println("VIRGULILLA"); return new Symbol(sym.VIRGULILLA);
-            }
-          // fall through
-          case 45: break;
-          case 21:
-            { System.out.println("Comentario Linea " + yytext() );/* Ignorar */
-            }
-          // fall through
-          case 46: break;
-          case 22:
-            { System.out.println("CARACTER"); return new Symbol(sym.CARACTER);
-            }
-          // fall through
-          case 47: break;
-          case 23:
-            { System.out.println("CADENA"); return new Symbol(sym.CADENA);
-            }
-          // fall through
-          case 48: break;
-          case 24:
-            { System.out.println("CONJUNTO"); return new Symbol(sym.CONJ);
-            }
-          // fall through
-          case 49: break;
-          case 25:
-            { System.out.println("Comentario MultiLinea");/* Ignorar */
-            }
-          // fall through
-          case 50: break;
           default:
             zzScanError(ZZ_NO_MATCH);
         }
