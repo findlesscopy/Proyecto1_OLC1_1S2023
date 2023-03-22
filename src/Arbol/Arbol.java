@@ -1,13 +1,15 @@
 package Arbol;
 import java.util.*;
 
-import static Arbol.GraphvizExporter.convertir;
-import static java.util.Collections.replaceAll;
+import Analizadores.parser;
+
+import static Arbol.GraphvizExporter.*;
 
 public class Arbol {
     private Nodo arbol_expresion;
     public int contador = 0;
     public int num_nodo = 1;
+    public int contadorinterno = 0;
     public HashMap<Integer, ArrayList<Integer>> tabla_siguientes = new HashMap<>();
     public HashMap<Integer, String> tabla_lexemas = new HashMap<>();
     public HashMap<Integer, ArrayList<Integer>> tablaTransiciones = new HashMap<>();
@@ -18,6 +20,8 @@ public class Arbol {
             return Integer.compare(o1.get(0), o2.get(0));
         }
     });
+    public int contadorAFND = 0;
+    public ArrayList<TransicionAFND> transicionesAFND = new ArrayList<>();
     public Arbol(Nodo arbol_expresion) {
         Nodo raiz = new Nodo(".");
         Nodo aceptacion = new Nodo("#");
@@ -32,20 +36,27 @@ public class Arbol {
         this.tabla_siguientes.put(contador+1,listaVacia);
         tabla_lexemas(this.arbol_expresion);
         crearTablaTransiciones(this.tabla_siguientes,this.arbol_expresion);
-        //generarTablaTransiciones(asignarTransiciones());
+        //recorrerAFND(generarTransicionesAFND(this.arbol_expresion));
+        //recorrerAFND();
+        //System.out.println(generarDotAFND());
         num_nodo = 0;
-        System.out.println(tabla_siguientes);
-        System.out.println(graficarArbol(this.arbol_expresion, num_nodo));
-        graficarTablaSiguientes(this.arbol_expresion);
-        generarTablaTransiciones(asignarTransiciones());
-        System.out.println(generarDot(asignarTransiciones(),this.tabla_lexemas));
+        //System.out.println(generarDotAFND(generarTransicionesAFND(this.arbol_expresion)));
+        //generarTablaTransiciones(asignarTransiciones());
+
+        convArbol("digraph{\n"+graficarArbol(this.arbol_expresion, num_nodo)+"}", "_"+num_nodo);
+        ConvSiguientes(graficarTablaSiguientes(this.arbol_expresion),"_"+num_nodo);
+        convTransiciones(graficarTablaTransiciones(asignarTransiciones()),"_"+num_nodo);
+        convAFD(graficarAFD(asignarTransiciones(),this.tabla_lexemas),"_"+num_nodo);
+        convAFND(generarDotAFND(generarTransicionesAFND(this.arbol_expresion)),"_"+num_nodo);
+
+
+        //graficarTablaSiguientes(this.arbol_expresion);
+        //generarTablaTransiciones(asignarTransiciones());
+        //System.out.println(generarDot(asignarTransiciones(),this.tabla_lexemas));
         //System.out.println(tabla_lexemas);
         //System.out.println(tablaTransiciones);
         //System.out.println(tablaTransicionesLista);
-
-
-
-
+        contadorinterno++;
     }
     public void asignar_numeros(Nodo actual){
         if(actual == null){
@@ -108,7 +119,6 @@ public class Arbol {
                 return;
             }
         }
-
     }
     public void tabla_siguientes(Nodo actual){
         if(actual == null){
@@ -157,9 +167,9 @@ public class Arbol {
             return true;
         }
     }
-    public void graficarTablaSiguientes(Nodo nodo){
+    public String graficarTablaSiguientes(Nodo nodo){
         if(nodo == null){
-            return;
+            return "";
         }
         String dot = "digraph G{\n";
         dot += "node [shape=plaintext]\n";
@@ -172,7 +182,7 @@ public class Arbol {
         dot += "</table>\n";
         dot += ">];\n";
         dot += "}";
-        System.out.println(dot);
+        return dot;
     }
     public String getNombreLexema(int id){
         for (Map.Entry<Integer, String> entry : tabla_lexemas.entrySet()) {
@@ -267,7 +277,7 @@ public class Arbol {
         return true; // Si son iguales, se regresa true
     }
 
-    public void generarTablaTransiciones(List<Transicion> transiciones) {
+    public String graficarTablaTransiciones(List<Transicion> transiciones) {
         // Crear HashMap para almacenar las transiciones
         Map<Integer, Map<Integer, Integer>> tablaTransiciones = new HashMap<>();
 
@@ -277,7 +287,7 @@ public class Arbol {
             int lexema = transicion.getIdLista();
             int estadoDestino = transicion.getEstadoDestino();
             boolean aceptacion = transicion.isAceptacion();
-            System.out.println("Estado origen: " + estadoOrigen + ", Lexema: " + lexema+", Estado destino: " + (estadoDestino+1) + " ,Aceptacion?:" +aceptacion);
+            //System.out.println("Estado origen: " + estadoOrigen + ", Lexema: " + lexema+", Estado destino: " + (estadoDestino+1) + " ,Aceptacion?:" +aceptacion);
             // Agregar la transición al HashMap
             tablaTransiciones.computeIfAbsent(estadoOrigen, k -> new HashMap<>())
                     .put(lexema, estadoDestino + 1);
@@ -319,7 +329,7 @@ public class Arbol {
         dot += "    </table>\n";
         dot += "  >]\n";
         dot += "}";
-        System.out.println(dot);
+        return dot;
     }
 
     public List<Transicion> asignarTransiciones() {
@@ -344,7 +354,7 @@ public class Arbol {
                         contadorListas++;
                     }
                     //System.out.println("Empieza otro");
-                    System.out.println("Estado origen: " + estadoOrigen + ", Lexema: " + (aux) + " ,Estado destino: " + (idLista+1));
+                    //System.out.println("Estado origen: " + estadoOrigen + ", Lexema: " + (aux) + " ,Estado destino: " + (idLista+1));
                     if(aux == tabla_lexemas.size()){
                         transiciones.add(new Transicion(estadoOrigen,idLista,aux,true));
                     }else{
@@ -357,39 +367,157 @@ public class Arbol {
         return transiciones;
     }
 
-    public static String generarDot(List<Transicion> transiciones, Map<Integer, String> tabla_lexemas) {
+    public static String graficarAFD(List<Transicion> transiciones, Map<Integer, String> tabla_lexemas) {
         String dot = "";
         dot += "digraph AFD {\n";
         dot += "  rankdir=LR;\n";
         dot += "  node [shape = doublecircle]; ";
-        List<Integer> estadosAceptacion = new ArrayList<>();
+        List<String> estadosAceptacion = new ArrayList<>();
         for (Transicion t : transiciones) {
             if (t.isAceptacion()) {
-                estadosAceptacion.add(t.getEstadoDestino());
+                estadosAceptacion.add("S"+t.getEstadoDestino());
             }
         }
-        for (int estadoAceptacion : estadosAceptacion) {
+        for (String estadoAceptacion : estadosAceptacion) {
             dot += estadoAceptacion + " ";
         }
         dot += ";\n";
         dot += "  node [shape = circle];\n";
         for (Transicion t : transiciones) {
             String lexema = tabla_lexemas.get(t.getIdLista());
-            if(lexema.equals("\" \"")){
-                lexema = lexema.replaceAll("\"", "\\\\\"");
-            }
-            if(lexema.equals("\n")){
-                lexema = lexema.replaceAll("\n", "salto de linea");
-            }
+            //System.out.printf(lexema);
+
+            lexema = lexema.replaceAll("\"", "");
             if(lexema.equals("#")){
 
             }else {
-                dot += "  " + t.getEstadoOrigen() + " -> " + (t.getEstadoDestino()+1) + " [ label = \""+lexema +"\" ];\n";
+                dot += "  " + "S"+t.getEstadoOrigen() + " -> " + "S"+(t.getEstadoDestino()+1) + " [ label = \""+lexema +"\" ];\n";
 
             }
             //dot += "  " + t.getEstadoOrigen() + " -> " + (t.getEstadoDestino()+1) + " [ label = \""+lexema +"\" ];\n";
         }
         dot += "}\n";
         return dot;
+    }
+    public static String generarDotAFND(ArrayList<TransicionAFND> transiciones) {
+        StringBuilder dot = new StringBuilder();
+        dot.append("digraph AFND {\n");
+        dot.append("\trankdir=LR;\n");
+        dot.append("\tsize=\"8,5\";\n");
+        dot.append("\tnode [shape = doublecircle]; S0;\n");
+        dot.append("\tnode [shape = circle];\n");
+        dot.append("\tS0 -> S1 [label = \"ε\"];\n");
+
+        for (TransicionAFND transicion : transiciones) {
+            if (transicion.getLexema() == null) {
+                dot.append(String.format("\tS%d -> S%d [label = \"ε\"];\n", transicion.getEstadoOrigen(), transicion.getEstadoDestino()));
+            } else {
+                String lexema = transicion.getLexema();
+                lexema = lexema.replaceAll("\"", "\\\\\"");
+                dot.append(String.format("\tS%d -> S%d [label = \"%s\"];\n", transicion.getEstadoOrigen(), transicion.getEstadoDestino(),lexema));
+            }
+        }
+
+        dot.append("}\n");
+        return dot.toString();
+    }
+    public void recorrerAFND(ArrayList<TransicionAFND> transicionesAFND){
+        for(TransicionAFND t: transicionesAFND){
+            //System.out.println("Estado origen: " + t.getEstadoOrigen() + ", Lexema: " + t.getLexema() + ", Estado destino: " + t.getEstadoDestino());
+        }
+    }
+    public ArrayList<TransicionAFND> generarTransicionesAFND(Nodo raiz) {
+        ArrayList<TransicionAFND> transiciones = new ArrayList<>();
+        generarTransicionesRecursivoAFND(raiz, 1, transiciones);
+        //transiciones.add(new TransicionAFND(0, 1, "ε", true));
+        return transiciones;
+    }
+    public void generarTransicionesRecursivoAFND(Nodo nodo, int estadoInicial, ArrayList<TransicionAFND> transiciones) {
+        int estadoDestino = estadoInicial + 1;
+        if (nodo == null) {
+            return;
+        }
+        if (nodo.isLeaf()) {
+            transiciones.add(new TransicionAFND(estadoInicial, estadoDestino, nodo.getValue(), false));
+            return;
+        }
+        switch (nodo.getValue()) {
+            case "?" -> {
+                transiciones.add(new TransicionAFND(estadoInicial, estadoDestino, "ε", false));
+                if (nodo.getDerecha().getValue().equals("|") || nodo.getDerecha().getValue().equals(".")){
+                    generarTransicionesRecursivoAFND(nodo.getDerecha(), estadoInicial, transiciones);
+                }else{
+                    transiciones.add(new TransicionAFND(estadoInicial, estadoDestino, nodo.getDerecha().getValue(), false));
+                    estadoInicial++;
+                }
+                transiciones.add(new TransicionAFND(estadoInicial, estadoDestino, "ε", false));
+                transiciones.add(new TransicionAFND(estadoDestino-1, estadoDestino, "ε", false));
+            }
+            case "*" -> {
+                transiciones.add(new TransicionAFND(estadoInicial, estadoDestino, "ε", false));
+                estadoInicial++;
+                if (nodo.getDerecha().getValue().equals("|") || nodo.getDerecha().getValue().equals(".")){
+                    generarTransicionesRecursivoAFND(nodo.getDerecha(), estadoInicial, transiciones);
+                }else{
+                    transiciones.add(new TransicionAFND(estadoInicial, estadoDestino, nodo.getDerecha().getValue(), false));
+                    estadoInicial++;
+                }
+                transiciones.add(new TransicionAFND(estadoInicial, estadoDestino, "ε", false));
+                transiciones.add(new TransicionAFND(estadoInicial, estadoInicial-1, "ε", false));
+                estadoInicial++;
+                transiciones.add(new TransicionAFND(estadoInicial-3, estadoInicial, "ε", false));
+            }
+            case "+" -> {
+                transiciones.add(new TransicionAFND(estadoInicial, estadoDestino, "ε", false));
+                estadoInicial++;
+                if (nodo.getDerecha().getValue().equals("|") || nodo.getDerecha().getValue().equals(".")){
+                    generarTransicionesRecursivoAFND(nodo.getDerecha(), estadoInicial, transiciones);
+                }else{
+                    transiciones.add(new TransicionAFND(estadoInicial, estadoDestino, nodo.getDerecha().getValue(), false));
+                    estadoInicial++;
+                }
+                transiciones.add(new TransicionAFND(estadoInicial, estadoDestino, "ε", false));
+                transiciones.add(new TransicionAFND(estadoInicial, estadoInicial-1, "ε", false));
+            }
+            case "|" -> {
+                transiciones.add(new TransicionAFND(estadoInicial, estadoDestino, "ε", false));
+                transiciones.add(new TransicionAFND(estadoInicial, estadoDestino+2, "ε", false));
+                estadoInicial++;
+                if (nodo.getDerecha().getValue().equals("+") || nodo.getDerecha().getValue().equals("?") || nodo.getDerecha().getValue().equals("*") || nodo.getDerecha().getValue().equals("|") || nodo.getDerecha().getValue().equals(".")){
+                    generarTransicionesRecursivoAFND(nodo.getDerecha(), estadoInicial, transiciones);
+                }else{
+                    transiciones.add(new TransicionAFND(estadoInicial, estadoDestino, nodo.getDerecha().getValue(), false));
+                    estadoInicial++;
+                }
+                transiciones.add(new TransicionAFND(estadoInicial, estadoDestino+3,"ε", false));
+                estadoInicial++;
+                if (nodo.getIzquierda().getValue().equals("+") || nodo.getIzquierda().getValue().equals("?") || nodo.getIzquierda().getValue().equals("*") || nodo.getIzquierda().getValue().equals("|") || nodo.getIzquierda().getValue().equals(".")){
+                    generarTransicionesRecursivoAFND(nodo.getIzquierda(), estadoInicial, transiciones);
+                }else{
+                    transiciones.add(new TransicionAFND(estadoInicial, estadoDestino, nodo.getIzquierda().getValue(), false));
+                    estadoInicial++;
+                }
+                transiciones.add(new TransicionAFND(estadoInicial, estadoDestino,"ε", false));
+
+            }
+            case "." -> {
+                if (nodo.getIzquierda().getValue().equals("+") || nodo.getIzquierda().getValue().equals("?") || nodo.getIzquierda().getValue().equals("*") || nodo.getIzquierda().getValue().equals("|") || nodo.getIzquierda().getValue().equals(".")){
+                    generarTransicionesRecursivoAFND(nodo.getIzquierda(), estadoInicial, transiciones);
+                }else{
+                    transiciones.add(new TransicionAFND(estadoInicial, estadoDestino, nodo.getIzquierda().getValue(), false));
+                    estadoInicial++;
+                }
+                if (nodo.getDerecha().getValue().equals("+") || nodo.getDerecha().getValue().equals("?") || nodo.getDerecha().getValue().equals("*") || nodo.getDerecha().getValue().equals("|") || nodo.getDerecha().getValue().equals(".")){
+                    generarTransicionesRecursivoAFND(nodo.getDerecha(), estadoInicial, transiciones);
+                }else{
+                    transiciones.add(new TransicionAFND(estadoInicial, estadoDestino, nodo.getDerecha().getValue(), false));
+                }
+            }
+
+
+            default -> {
+            }
+
+        }
     }
 }

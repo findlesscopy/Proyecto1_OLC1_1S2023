@@ -9,6 +9,7 @@ import java_cup.runtime.*;
 import java.util.ArrayList;
 import Arbol.Nodo;
 import Arbol.Arbol;
+import Errores.ErroresSintacticos;
 import java_cup.runtime.XMLElement;
 
 /** CUP v0.11b 20160615 (GIT 4ac7450) generated parser.
@@ -172,11 +173,15 @@ public class parser extends java_cup.runtime.lr_parser {
 //Codigo visible
     public ArrayList<Arbol> listadoExpresiones = new ArrayList<>();
 
+    public ArrayList<String> nombres = new ArrayList<>();
+    public static ArrayList<ErroresSintacticos> erroresSintacticos = new ArrayList<>();
     public void syntax_error(Symbol s){
+        erroresSintacticos.add(new ErroresSintacticos(false,s.value.toString(), s.left+1, s.right+1));
         System.out.println("Error R de sintaxis: "+ s.value +" Linea "+(s.left+1)+" columna "+(s.right+1) );
     }
 
     public void unrecovered_syntax_error(Symbol s) throws java.lang.Exception{
+        erroresSintacticos.add(new ErroresSintacticos(true,s.value.toString(), s.left+1, s.right+1));
         System.out.println("Error NR de sintaxis: "+ s.value +" Linea "+(s.left+1)+" columna "+(s.right+1) );
     }
 
@@ -260,10 +265,13 @@ class CUP$parser$actions {
           case 5: // definicion ::= ID FLECHA expresion_regular P_COMA 
             {
               Object RESULT =null;
+		int bleft = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-3)).left;
+		int bright = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-3)).right;
+		String b = (String)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-3)).value;
 		int aleft = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)).left;
 		int aright = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)).right;
 		Object a = (Object)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-1)).value;
-		 listadoExpresiones.add(new Arbol((Nodo)a));  
+		 listadoExpresiones.add(new Arbol((Nodo)a));  nombres.add(b); 
               CUP$parser$result = parser.getSymbolFactory().newSymbol("definicion",2, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-3)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
