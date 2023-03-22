@@ -327,7 +327,7 @@ public class GUIeXRegan extends javax.swing.JFrame {
         //System.out.println(html);
         FileWriter fichero = null;
         try {
-            fichero = new FileWriter("src/Errores_202001800/ErroresLexicos.html");
+            fichero = new FileWriter("C:\\Users\\findl\\OneDrive\\Escritorio\\COMPI 1\\Laboratorio\\Proyecto1\\src\\Errores_202001800\\ErroresLexicos.html");
             PrintWriter pw = null;
             pw = new PrintWriter(fichero);
             //System.out.println(codigoDot);
