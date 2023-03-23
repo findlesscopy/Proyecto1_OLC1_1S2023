@@ -6,7 +6,7 @@
 ### Sección C
 <br></br>
 
-## **Manual Técnico**
+## **Manual de Usuario**
 <br></br>
 
 | Nombre | Carnet | 
