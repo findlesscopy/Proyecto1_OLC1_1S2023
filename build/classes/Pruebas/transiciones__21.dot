@@ -5,28 +5,20 @@ title ="Tabla de transiciones"
     <table border='1' cellspacing='0'>
       <tr>
         <td>Estado</td>
-        <td>minuscula</td>
-        <td>mayuscula</td>
-        <td>simbolos</td>
-        <td>minuscula</td>
-        <td>mayuscula</td>
-        <td>numero</td>
-        <td>"@"</td>
-        <td>minuscula</td>
-        <td>mayuscula</td>
-        <td>"."</td>
-        <td>"c"</td>
-        <td>"o"</td>
-        <td>"m"</td>
+        <td>"C"</td>
+        <td>"O"</td>
+        <td>"M"</td>
+        <td>"P"</td>
+        <td>"I"</td>
+        <td>"1"</td>
+        <td>letra</td>
+        <td>digito</td>
+        <td>" "</td>
         <td>#</td>
       </tr>
       <tr>
         <td>S0</td>
         <td>S1</td>
-        <td>S1</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -40,10 +32,6 @@ title ="Tabla de transiciones"
       <tr>
         <td>S1</td>
         <td>-</td>
-        <td>-</td>
-        <td>S2</td>
-        <td>S2</td>
-        <td>S2</td>
         <td>S2</td>
         <td>-</td>
         <td>-</td>
@@ -58,10 +46,6 @@ title ="Tabla de transiciones"
         <td>S2</td>
         <td>-</td>
         <td>-</td>
-        <td>S2</td>
-        <td>S2</td>
-        <td>S2</td>
-        <td>S2</td>
         <td>S3</td>
         <td>-</td>
         <td>-</td>
@@ -76,12 +60,8 @@ title ="Tabla de transiciones"
         <td>-</td>
         <td>-</td>
         <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td>S4</td>
-        <td>S4</td>
+        <td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -94,12 +74,8 @@ title ="Tabla de transiciones"
         <td>-</td>
         <td>-</td>
         <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>S4</td>
-        <td>S4</td>
         <td>S5</td>
+        <td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -112,66 +88,24 @@ title ="Tabla de transiciones"
         <td>-</td>
         <td>-</td>
         <td>-</td>
+        <td>S6</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+      </tr>
+      <tr>
+        <td>S6</td>
+        <td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
         <td>S6</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-      </tr>
-      <tr>
         <td>S6</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
+        <td>S6</td>
         <td>S7</td>
-        <td>-</td>
-        <td>-</td>
-      </tr>
-      <tr>
-        <td>S7</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>S8</td>
-        <td>-</td>
-      </tr>
-      <tr>
-        <td>S8</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>S9</td>
       </tr>
     </table>
   >]

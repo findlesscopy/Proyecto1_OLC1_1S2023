@@ -6,6 +6,7 @@ package proyecto1;
 
 import Analizadores.Lexer;
 import Analizadores.parser;
+import Arbol.Prueba;
 import java.awt.Image;
 import java.io.BufferedReader;
 import java.io.File;
@@ -19,6 +20,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
@@ -171,11 +173,14 @@ public class GUIeXRegan extends javax.swing.JFrame {
     private void generarAutomatasBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generarAutomatasBtnActionPerformed
         generarReporte();
         interpretar(CodeTA.getText());
-        
+        JOptionPane.showMessageDialog(null, "Se han generado los Automatas", "Notificación", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_generarAutomatasBtnActionPerformed
 
     private void AnalizarEntradaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AnalizarEntradaBtnActionPerformed
-        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(null, "Análisis Completo", "Notificación", JOptionPane.INFORMATION_MESSAGE);
+        for(Prueba prueba : parser.pruebas){
+            ConsoleTA.setText(prueba.getCadena() +" Correcta");
+        }
     }//GEN-LAST:event_AnalizarEntradaBtnActionPerformed
 
     private void NewFileItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewFileItemActionPerformed
@@ -211,6 +216,7 @@ public class GUIeXRegan extends javax.swing.JFrame {
                 ex.printStackTrace();
             }
         }
+        JOptionPane.showMessageDialog(null, "Guardado Correctamente", "Notificación", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_SaveItemActionPerformed
 
     private void SaveAsItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveAsItemActionPerformed

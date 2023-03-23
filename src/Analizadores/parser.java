@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import Arbol.Nodo;
 import Arbol.Arbol;
 import Errores.ErroresSintacticos;
+import Arbol.Conjuntos;
+import Arbol.Prueba;
 import java_cup.runtime.XMLElement;
 
 /** CUP v0.11b 20160615 (GIT 4ac7450) generated parser.
@@ -175,6 +177,13 @@ public class parser extends java_cup.runtime.lr_parser {
 
     public ArrayList<String> nombres = new ArrayList<>();
     public static ArrayList<ErroresSintacticos> erroresSintacticos = new ArrayList<>();
+    public static ArrayList<Conjuntos> conjuntos = new ArrayList<>();
+    public static ArrayList<Prueba> pruebas = new ArrayList<>();
+
+    public ArrayList<String> aux = new ArrayList<>();
+    public boolean rango = false;
+    public String nombre = "";
+
     public void syntax_error(Symbol s){
         erroresSintacticos.add(new ErroresSintacticos(false,s.value.toString(), s.left+1, s.right+1));
         System.out.println("Error R de sintaxis: "+ s.value +" Linea "+(s.left+1)+" columna "+(s.right+1) );
@@ -229,7 +238,7 @@ class CUP$parser$actions {
           case 1: // olc ::= LL_ABRE definiciones PORCENTAJE PORCENTAJE PORCENTAJE PORCENTAJE pruebas LL_CIERRA 
             {
               Object RESULT =null;
-
+		 
               CUP$parser$result = parser.getSymbolFactory().newSymbol("olc",0, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-7)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -256,7 +265,10 @@ class CUP$parser$actions {
           case 4: // definicion ::= CONJ D_PUNTOS ID FLECHA rango P_COMA 
             {
               Object RESULT =null;
-
+		int aleft = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-3)).left;
+		int aright = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-3)).right;
+		String a = (String)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-3)).value;
+		 nombre = a; Conjuntos conjunto = new Conjuntos(nombre, aux, rango); conjuntos.add(conjunto); aux.clear(); 
               CUP$parser$result = parser.getSymbolFactory().newSymbol("definicion",2, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-5)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -280,7 +292,13 @@ class CUP$parser$actions {
           case 6: // rango ::= L_MINUSCULA VIRGULILLA L_MINUSCULA 
             {
               Object RESULT =null;
-
+		int aleft = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)).left;
+		int aright = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)).right;
+		String a = (String)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-2)).value;
+		int bleft = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
+		int bright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
+		String b = (String)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
+		 aux.add(a); aux.add(b); rango = true; 
               CUP$parser$result = parser.getSymbolFactory().newSymbol("rango",4, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -289,7 +307,13 @@ class CUP$parser$actions {
           case 7: // rango ::= L_MAYUSCULA VIRGULILLA L_MAYUSCULA 
             {
               Object RESULT =null;
-
+		int aleft = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)).left;
+		int aright = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)).right;
+		String a = (String)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-2)).value;
+		int bleft = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
+		int bright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
+		String b = (String)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
+		 aux.add(a); aux.add(b); rango = true; 
               CUP$parser$result = parser.getSymbolFactory().newSymbol("rango",4, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -298,7 +322,13 @@ class CUP$parser$actions {
           case 8: // rango ::= DIGITO VIRGULILLA DIGITO 
             {
               Object RESULT =null;
-
+		int aleft = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)).left;
+		int aright = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)).right;
+		String a = (String)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-2)).value;
+		int bleft = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
+		int bright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
+		String b = (String)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
+		 aux.add(a); aux.add(b); rango = true; 
               CUP$parser$result = parser.getSymbolFactory().newSymbol("rango",4, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -307,7 +337,13 @@ class CUP$parser$actions {
           case 9: // rango ::= ESPECIAL VIRGULILLA ESPECIAL 
             {
               Object RESULT =null;
-
+		int aleft = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)).left;
+		int aright = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)).right;
+		String a = (String)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-2)).value;
+		int bleft = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
+		int bright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
+		String b = (String)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
+		 aux.add(a); aux.add(b); rango = true; 
               CUP$parser$result = parser.getSymbolFactory().newSymbol("rango",4, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -343,7 +379,10 @@ class CUP$parser$actions {
           case 13: // unico ::= L_MINUSCULA 
             {
               Object RESULT =null;
-
+		int aleft = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
+		int aright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
+		String a = (String)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
+		 aux.add(a); 
               CUP$parser$result = parser.getSymbolFactory().newSymbol("unico",6, ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -352,7 +391,10 @@ class CUP$parser$actions {
           case 14: // unico ::= L_MAYUSCULA 
             {
               Object RESULT =null;
-
+		int aleft = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
+		int aright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
+		String a = (String)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
+		 aux.add(a); 
               CUP$parser$result = parser.getSymbolFactory().newSymbol("unico",6, ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -361,7 +403,10 @@ class CUP$parser$actions {
           case 15: // unico ::= DIGITO 
             {
               Object RESULT =null;
-
+		int aleft = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
+		int aright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
+		String a = (String)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
+		 aux.add(a); 
               CUP$parser$result = parser.getSymbolFactory().newSymbol("unico",6, ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -370,7 +415,10 @@ class CUP$parser$actions {
           case 16: // unico ::= ESPECIAL 
             {
               Object RESULT =null;
-
+		int aleft = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
+		int aright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
+		String a = (String)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
+		 aux.add(a); 
               CUP$parser$result = parser.getSymbolFactory().newSymbol("unico",6, ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -502,7 +550,13 @@ class CUP$parser$actions {
           case 26: // prueba ::= ID D_PUNTOS CADENA P_COMA 
             {
               Object RESULT =null;
-
+		int aleft = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-3)).left;
+		int aright = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-3)).right;
+		String a = (String)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-3)).value;
+		int bleft = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)).left;
+		int bright = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)).right;
+		String b = (String)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-1)).value;
+		 pruebas.add(new Prueba(a,b)); 
               CUP$parser$result = parser.getSymbolFactory().newSymbol("prueba",8, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-3)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;

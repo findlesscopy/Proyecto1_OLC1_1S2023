@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import Arbol.Nodo;
 import Arbol.Arbol;
 import Errores.ErroresSintacticos;
+import Arbol.Conjuntos;
+import Arbol.Prueba;
 //PARSER
 parser code
 {://Codigo visible
@@ -11,6 +13,13 @@ parser code
 
     public ArrayList<String> nombres = new ArrayList<>();
     public static ArrayList<ErroresSintacticos> erroresSintacticos = new ArrayList<>();
+    public static ArrayList<Conjuntos> conjuntos = new ArrayList<>();
+    public static ArrayList<Prueba> pruebas = new ArrayList<>();
+
+    public ArrayList<String> aux = new ArrayList<>();
+    public boolean rango = false;
+    public String nombre = "";
+
     public void syntax_error(Symbol s){
         erroresSintacticos.add(new ErroresSintacticos(false,s.value.toString(), s.left+1, s.right+1));
         System.out.println("Error R de sintaxis: "+ s.value +" Linea "+(s.left+1)+" columna "+(s.right+1) );
@@ -36,27 +45,27 @@ non terminal pruebas, prueba;
 
 start with olc;
 
-olc::= LL_ABRE definiciones PORCENTAJE PORCENTAJE PORCENTAJE PORCENTAJE pruebas LL_CIERRA;
+olc::= LL_ABRE definiciones PORCENTAJE PORCENTAJE PORCENTAJE PORCENTAJE pruebas LL_CIERRA {: :};
 
 definiciones::= definiciones definicion
-               | definicion;
+               | definicion ;
 
-definicion::= CONJ D_PUNTOS ID FLECHA rango P_COMA
+definicion::= CONJ D_PUNTOS ID:a FLECHA rango P_COMA {: nombre = a; Conjuntos conjunto = new Conjuntos(nombre, aux, rango); conjuntos.add(conjunto); aux.clear(); :}
              |ID:b FLECHA expresion_regular:a P_COMA {: listadoExpresiones.add(new Arbol((Nodo)a));  nombres.add(b); :};
 
-rango::= L_MINUSCULA VIRGULILLA L_MINUSCULA
-        | L_MAYUSCULA VIRGULILLA L_MAYUSCULA
-        | DIGITO VIRGULILLA DIGITO
-        | ESPECIAL VIRGULILLA ESPECIAL
+rango::= L_MINUSCULA:a VIRGULILLA L_MINUSCULA:b {: aux.add(a); aux.add(b); rango = true; :}
+        | L_MAYUSCULA:a VIRGULILLA L_MAYUSCULA:b  {: aux.add(a); aux.add(b); rango = true; :}
+        | DIGITO:a VIRGULILLA DIGITO:b {: aux.add(a); aux.add(b); rango = true; :}
+        | ESPECIAL:a VIRGULILLA ESPECIAL:b {: aux.add(a); aux.add(b); rango = true; :}
         | listado;
 
 listado::= listado COMA unico
           | unico;
 
-unico::= L_MINUSCULA
-        | L_MAYUSCULA
-        | DIGITO
-        | ESPECIAL;
+unico::= L_MINUSCULA:a {: aux.add(a); :}
+        | L_MAYUSCULA:a {: aux.add(a); :}
+        | DIGITO:a {: aux.add(a); :}
+        | ESPECIAL:a {: aux.add(a); :};
 
 expresion_regular::= CONCAT:a expresion_regular:b expresion_regular:c {: Nodo padre = new Nodo(a); padre.setIzquierda((Nodo)b); padre.setDerecha((Nodo)c); RESULT = padre; :}
                     | OR:a expresion_regular:b expresion_regular:c {:Nodo padre = new Nodo(a); padre.setIzquierda((Nodo)b); padre.setDerecha((Nodo)c); RESULT = padre; :}
@@ -70,4 +79,4 @@ expresion_regular::= CONCAT:a expresion_regular:b expresion_regular:c {: Nodo pa
 pruebas ::= pruebas prueba
            | prueba;
 
-prueba::= ID D_PUNTOS CADENA P_COMA;
+prueba::= ID:a D_PUNTOS CADENA:b P_COMA{: pruebas.add(new Prueba(a,b)); :};

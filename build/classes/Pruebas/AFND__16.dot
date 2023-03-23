@@ -1,0 +1,35 @@
+digraph AFND {
+	rankdir=LR;
+	size="8,5";
+	node [shape = doublecircle]; S0;
+	node [shape = circle];
+	S0 -> S1 [label = "?"];
+	S1 -> S2 [label = "\'"];
+	S2 -> S3 [label = "?"];
+	S3 -> S4 [label = "?"];
+	S3 -> S6 [label = "?"];
+	S4 -> S4 [label = "\" \""];
+	S5 -> S7 [label = "?"];
+	S6 -> S7 [label = "?"];
+	S6 -> S9 [label = "?"];
+	S7 -> S7 [label = "digito"];
+	S8 -> S10 [label = "?"];
+	S9 -> S10 [label = "?"];
+	S9 -> S12 [label = "?"];
+	S10 -> S10 [label = "mayus"];
+	S11 -> S13 [label = "?"];
+	S12 -> S13 [label = "?"];
+	S12 -> S15 [label = "?"];
+	S13 -> S13 [label = "minus"];
+	S14 -> S16 [label = "?"];
+	S15 -> S13 [label = "\n"];
+	S16 -> S13 [label = "?"];
+	S12 -> S10 [label = "?"];
+	S9 -> S7 [label = "?"];
+	S6 -> S4 [label = "?"];
+	S3 -> S3 [label = "?"];
+	S3 -> S2 [label = "?"];
+	S2 -> S3 [label = "\'"];
+	S1 -> S2 [label = "#"];
+}
+

@@ -1,7 +1,7 @@
 package Arbol;
 import java.util.*;
 
-import Analizadores.parser;
+import Analizadores.*;
 
 import static Arbol.GraphvizExporter.*;
 
@@ -49,6 +49,8 @@ public class Arbol {
         convAFD(graficarAFD(asignarTransiciones(),this.tabla_lexemas),"_"+num_nodo);
         convAFND(generarDotAFND(generarTransicionesAFND(this.arbol_expresion)),"_"+num_nodo);
 
+        //conjuntos();
+        //EvaluarCadenas();
 
         //graficarTablaSiguientes(this.arbol_expresion);
         //generarTablaTransiciones(asignarTransiciones());
@@ -520,4 +522,7 @@ public class Arbol {
 
         }
     }
+
+
+
 }
