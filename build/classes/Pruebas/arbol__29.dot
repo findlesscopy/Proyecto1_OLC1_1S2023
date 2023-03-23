@@ -1,0 +1,160 @@
+digraph{
+nodo1[label="Lexema: . 
+Anulable? false
+Primeros [1, 2]
+Ultimos [14]"];
+nodo2[label="Lexema: . 
+Anulable? false
+Primeros [1, 2]
+Ultimos [13]"];
+nodo1->nodo2;
+nodo3[label="Lexema: | 
+Anulable? false
+Primeros [1, 2]
+Ultimos [1, 2]"];
+nodo2->nodo3;
+nodo4[label="Lexema: minuscula 
+ID 1
+Anulable? false
+Primeros [1]
+Ultimos [1]"];
+nodo3->nodo4;
+nodo5[label="Lexema: mayuscula 
+ID 2
+Anulable? false
+Primeros [2]
+Ultimos [2]"];
+nodo3->nodo5;
+nodo6[label="Lexema: . 
+Anulable? false
+Primeros [3, 4, 5, 6]
+Ultimos [13]"];
+nodo2->nodo6;
+nodo7[label="Lexema: + 
+Anulable? false
+Primeros [3, 4, 5, 6]
+Ultimos [3, 4, 5, 6]"];
+nodo6->nodo7;
+nodo8[label="Lexema: | 
+Anulable? false
+Primeros [3, 4, 5, 6]
+Ultimos [3, 4, 5, 6]"];
+nodo7->nodo8;
+nodo9[label="Lexema: | 
+Anulable? false
+Primeros [3, 4, 5]
+Ultimos [3, 4, 5]"];
+nodo8->nodo9;
+nodo10[label="Lexema: | 
+Anulable? false
+Primeros [3, 4]
+Ultimos [3, 4]"];
+nodo9->nodo10;
+nodo11[label="Lexema: simbolos 
+ID 3
+Anulable? false
+Primeros [3]
+Ultimos [3]"];
+nodo10->nodo11;
+nodo12[label="Lexema: minuscula 
+ID 4
+Anulable? false
+Primeros [4]
+Ultimos [4]"];
+nodo10->nodo12;
+nodo13[label="Lexema: mayuscula 
+ID 5
+Anulable? false
+Primeros [5]
+Ultimos [5]"];
+nodo9->nodo13;
+nodo14[label="Lexema: numero 
+ID 6
+Anulable? false
+Primeros [6]
+Ultimos [6]"];
+nodo8->nodo14;
+nodo15[label="Lexema: . 
+Anulable? false
+Primeros [7]
+Ultimos [13]"];
+nodo6->nodo15;
+nodo16[label="Lexema: @ 
+ID 7
+Anulable? false
+Primeros [7]
+Ultimos [7]"];
+nodo15->nodo16;
+nodo17[label="Lexema: . 
+Anulable? false
+Primeros [8, 9]
+Ultimos [13]"];
+nodo15->nodo17;
+nodo18[label="Lexema: + 
+Anulable? false
+Primeros [8, 9]
+Ultimos [8, 9]"];
+nodo17->nodo18;
+nodo19[label="Lexema: | 
+Anulable? false
+Primeros [8, 9]
+Ultimos [8, 9]"];
+nodo18->nodo19;
+nodo20[label="Lexema: minuscula 
+ID 8
+Anulable? false
+Primeros [8]
+Ultimos [8]"];
+nodo19->nodo20;
+nodo21[label="Lexema: mayuscula 
+ID 9
+Anulable? false
+Primeros [9]
+Ultimos [9]"];
+nodo19->nodo21;
+nodo22[label="Lexema: . 
+Anulable? false
+Primeros [10]
+Ultimos [13]"];
+nodo17->nodo22;
+nodo23[label="Lexema: . 
+ID 10
+Anulable? false
+Primeros [10]
+Ultimos [10]"];
+nodo22->nodo23;
+nodo24[label="Lexema: . 
+Anulable? false
+Primeros [11]
+Ultimos [13]"];
+nodo22->nodo24;
+nodo25[label="Lexema: c 
+ID 11
+Anulable? false
+Primeros [11]
+Ultimos [11]"];
+nodo24->nodo25;
+nodo26[label="Lexema: . 
+Anulable? false
+Primeros [12]
+Ultimos [13]"];
+nodo24->nodo26;
+nodo27[label="Lexema: o 
+ID 12
+Anulable? false
+Primeros [12]
+Ultimos [12]"];
+nodo26->nodo27;
+nodo28[label="Lexema: m 
+ID 13
+Anulable? false
+Primeros [13]
+Ultimos [13]"];
+nodo26->nodo28;
+nodo29[label="Lexema: # 
+ID 14
+Anulable? false
+Primeros [14]
+Ultimos [14]"];
+nodo1->nodo29;
+}

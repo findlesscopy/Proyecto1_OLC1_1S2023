@@ -1,0 +1,10 @@
+digraph AFD {
+  rankdir=LR;
+  node [shape = doublecircle]; S1 ;
+  node [shape = circle];
+  S0 -> S1 [ label = "abecedarioMinus" ];
+  S1 -> S1 [ label = "_" ];
+  S1 -> S1 [ label = "abecedarioMinus" ];
+  S1 -> S1 [ label = "digito" ];
+}
+

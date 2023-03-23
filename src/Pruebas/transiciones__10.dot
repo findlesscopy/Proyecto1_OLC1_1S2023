@@ -1,0 +1,32 @@
+digraph G {
+  node [shape=plaintext]
+title ="Tabla de transiciones"
+  table [label=<
+    <table border='1' cellspacing='0'>
+      <tr>
+        <td>Estado</td>
+        <td>abecedarioMinus</td>
+        <td>"_"</td>
+        <td>abecedarioMinus</td>
+        <td>digito</td>
+        <td>#</td>
+      </tr>
+      <tr>
+        <td>S0</td>
+        <td>S1</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+      </tr>
+      <tr>
+        <td>S1</td>
+        <td>-</td>
+        <td>S1</td>
+        <td>S1</td>
+        <td>S1</td>
+        <td>S2</td>
+      </tr>
+    </table>
+  >]
+}
