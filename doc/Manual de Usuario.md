@@ -33,27 +33,27 @@ Esperamos que este manual sea de ayuda para usted y que logre utilizar el softwa
 # Uso del Software
 ## Interfaz Inicial
 Se muestra la interfaz inicial del software, en la cual se puede observar el menú principal, el área de trabajo, area de imagenes y la consola. <br>
-![Interfaz](./img/interfaz.png)
-<br>
+![Interfaz](./img/interfaz.png)<br>
+
 Si se hace click en Archivo se desplegarán las siguientes acciones con las que se puede interactuar:
 - Nuevo: Crea un nuevo archivo.
 - Abrir: Abre un archivo existente.
 - Guardar: Guarda el archivo actual.
-- Guardar como: Guarda el archivo actual con un nombre diferente. <br>
-![Archivo](./img/archivo.png)
-<br>
+- Guardar como: Guarda el archivo actual con un nombre diferente <br>
+![Archivo](./img/archivo.png)<br>
+
 Si hace click en Arbir archivo se colocará el contenido del archivo en el área de trabajo. <br>
-![Abrir](./img/abrir.png)
-<br>
+![Abrir](./img/abrir.png)<br>
 Si hace click en Guardar se guardará el contenido del área de trabajo en el archivo actual. <br>
-![Guardar](./img/guardar.png)
-<br>
+![Guardar](./img/guardar.png)<br>
+
 Si hace click en el boton Generar automata se generará el automata del archivo actual y junto con elo todos los reportes correspondientes en las carpetas designadas <br>
-![Generar](./img/generacion.png)
-<br>
+![Generar](./img/generacion.png)<br>
+
 Si hace click en el boton ver imagen, se abrirá el buscador para que elija que imagen generada quiere ver:
 ![Ver imagen](./img/imagen.png) <br>
 ![Ver imagen](./img/imagen2.png) <br>
+
 Si se hace click en el boton Analizar se generá el análisis de las cadenas ingresadas en el área de trabajo. <br>
 ![Analizar](./img/analisis.png) <br>
 ![Analizar](./img/analisis2.png) <br>
